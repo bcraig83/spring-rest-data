@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "70eb4897-fd37-4ccd-afd2-d100eb548e34",
+		"name": "RestData Sample App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3394bb4a-2390-495e-90c0-adc1582b9e78",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.set(\"surname\",buildRandomString(6));",
+							"pm.variables.set(\"given\",buildRandomString(4));",
+							"",
+							"function buildRandomString(length) {",
+							"  var text = \"\";",
+							"  var possible = \"abcdefghijlkmnopqrstuvwxyz\";",
+							"  for (var i = 0; i < length; i++)",
+							"    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+							"  return text;",
+							"}",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"surname\" : \"{{surname}}\",\n\t\"given\" : \"{{given}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

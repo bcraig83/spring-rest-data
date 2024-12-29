@@ -2,7 +2,8 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
-      "installMaven": true
-    }
+      "installGradle": true
+    },
+    "ghcr.io/devcontainers-extra/features/springboot-sdkman:2": {}
   }
 }
